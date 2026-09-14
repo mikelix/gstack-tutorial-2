@@ -1,0 +1,36 @@
+name: repo self-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  selfcheck:
+    name: required files · version pins · circularity guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run self-check
+        run: python3 .github/scripts/selfcheck.py
+
+      - name: Determinism of the reference exporter
+        # Cheapest possible determinism test: run the exporter twice, require
+        # byte-identical output. If this fails, nothing downstream is trustworthy.
+        run: |
+          cd starter
+          python3 scripts/db_export.py --db-in designs/layout.db.json \
+              --out /tmp/ref1.v --marker /tmp/m1
+          python3 scripts/db_export.py --db-in designs/layout.db.json \
+              --out /tmp/ref2.v --marker /tmp/m2
+          diff /tmp/ref1.v /tmp/ref2.v
+          echo "exporter deterministic"
+
+      - name: Shell syntax
+        run: bash -n starter/scripts/run_all.sh

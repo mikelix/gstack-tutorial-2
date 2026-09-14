@@ -1,0 +1,33 @@
+# versions.lock — TEMPLATE. Fill in the SHA columns after your own two runs.
+#
+# Two rules:
+#   1. Write this file BEFORE you run anything. Recording versions afterwards is
+#      how "it worked yesterday" bugs are born.
+#   2. Two platforms => two files. The Windows/Cygwin chain and the TinyTapeout VM
+#      chain produce DIFFERENT SHAs (different tool revisions, different PDK build).
+#      Publish both. Never force them to match.
+
+[platform A]  Windows 11 + Cygwin64
+magic        8.3.681    4432d7e
+netgen       1.5.323    bb8a610
+open_pdks    1.0.572    54435919
+microlane    -          87079e7f6
+pdk          sky130A    (open_pdks 1.0.572 build)
+python       3.13.x     PYTHONHASHSEED=0
+
+run 1 sha256  <fill after run 1>
+run 2 sha256  <fill after run 2 — MUST equal run 1>
+
+[platform B]  TinyTapeout VM (Ubuntu 22.04)
+magic        8.3.576
+netgen       1.5.270
+openlane     2024.05.09  (docker)
+pdk          sky130A     bdc9412
+
+run 1 sha256  <fill after run 1>
+run 2 sha256  <fill after run 2 — MUST equal run 1>
+
+# Reference values from the author's run are in reviews/04-qa-report.md.
+# They are platform-specific. If your SHA differs from the author's on the SAME
+# platform, that is a defect to investigate — not something to "fix" by relaxing
+# the check.

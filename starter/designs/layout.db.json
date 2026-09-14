@@ -1,0 +1,30 @@
+{
+  "_comment": "EXAMPLE P&R database dump — the shape db_export.py expects. Replace with a real dump from your place-and-route step. Note u4 (a decap) has empty ports: db_export fills its power/ground from the PDK pg-map (invariant I2) and reports every fill as a note.",
+  "design": "my_first_gds",
+  "ports": [
+    { "name": "din",  "direction": "input",  "net": "din"  },
+    { "name": "dout", "direction": "output", "net": "dout" }
+  ],
+  "instances": [
+    {
+      "name": "u1",
+      "cell": "sky130_fd_sc_hd__inv_2",
+      "ports": { "A": "din", "Y": "n1", "VPWR": "VPWR", "VGND": "VGND" }
+    },
+    {
+      "name": "u2",
+      "cell": "sky130_fd_sc_hd__nand2_1",
+      "ports": { "A": "n1", "B": "n1", "Y": "n2", "VPWR": "VPWR", "VGND": "VGND" }
+    },
+    {
+      "name": "u3",
+      "cell": "sky130_fd_sc_hd__inv_4",
+      "ports": { "A": "n2", "Y": "dout", "VPWR": "VPWR", "VGND": "VGND" }
+    },
+    {
+      "name": "u4",
+      "cell": "sky130_fd_sc_hd__decap_4",
+      "ports": { "VPWR": "", "VGND": "" }
+    }
+  ]
+}

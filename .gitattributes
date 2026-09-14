@@ -1,0 +1,26 @@
+# Line endings are part of the contract here, not a preference.
+#
+# *.sh MUST stay LF: a CRLF shell script fails with "\r: command not found" and
+# the error message does not point at line endings, so it costs hours.
+# *.bat is the opposite: some CRLF-sensitive parsing in cmd.exe misbehaves on LF.
+#
+# Binary artifacts are never converted.
+
+* text=auto eol=lf
+
+*.sh   text eol=lf
+*.py   text eol=lf
+*.tcl  text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+*.bat  text eol=crlf
+
+*.docx binary
+*.pptx binary
+*.zip  binary
+*.gds  binary
+*.ova  binary
+*.png  binary

@@ -1,0 +1,35 @@
+# Build artifacts
+run/
+build/
+*.o
+*.log
+
+# EDA outputs (large, regenerable)
+*.gds
+*.gds2
+*.def
+*.lef
+*.spice
+*.ext
+*.sim
+*.nodes
+*.mag
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets and local config
+config.env
+.env
+*.key
+
+# NEVER commit NDA material. If in doubt, it does not belong here.
