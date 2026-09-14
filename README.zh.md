@@ -1,5 +1,8 @@
 # gstack-tutorial-2 — 用 2 个 AI 智能体构建开源端到端 EDA 系统
 
+[![repo self-check](https://github.com/mikelix/gstack-tutorial-2/actions/workflows/selfcheck.yml/badge.svg)](https://github.com/mikelix/gstack-tutorial-2/actions/workflows/selfcheck.yml)
+[![许可：CC BY 4.0 / Apache-2.0](https://img.shields.io/badge/licence-CC%20BY%204.0%20%2F%20Apache--2.0-blue.svg)](LICENSE.md)
+
 > **这是什么**：一份动手教程。用 **gstack** 智能体工作流 + **两个领域 AI 智能体**，
 > 构建、运行并验证一条真实的开源芯片流程 —— 基于 SkyWater SKY130 开放 PDK 的
 > RTL → GDS，并用验证门链把产出锁到字节级哈希。

@@ -1,5 +1,8 @@
 # gstack-tutorial-2 — Build an Open-Source End-to-End EDA System with 2 AI Agents
 
+[![repo self-check](https://github.com/mikelix/gstack-tutorial-2/actions/workflows/selfcheck.yml/badge.svg)](https://github.com/mikelix/gstack-tutorial-2/actions/workflows/selfcheck.yml)
+[![Licence: CC BY 4.0 / Apache-2.0](https://img.shields.io/badge/licence-CC%20BY%204.0%20%2F%20Apache--2.0-blue.svg)](LICENSE.md)
+
 > **What this is.** A hands-on tutorial: use the **gstack** agent workflow plus **two
 > domain AI agents** to build, run and verify a real open-source silicon flow —
 > RTL → GDS on the SkyWater SKY130 open PDK — with a verification gate chain that
