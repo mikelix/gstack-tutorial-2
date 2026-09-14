@@ -7,7 +7,7 @@ PowerPoint are generated from it.
 |---|---|---|
 | Markdown (source) | [`../TUTORIAL.md`](../TUTORIAL.md) | [`../TUTORIAL.zh.md`](../TUTORIAL.zh.md) |
 | MS Word | `gstack-tutorial-2_EN.docx` | `gstack-tutorial-2_ZH.docx` |
-| PowerPoint (35 slides) | `gstack-tutorial-2_EN.pptx` | `gstack-tutorial-2_ZH.pptx` |
+| PowerPoint (39 slides) | `gstack-tutorial-2_EN.pptx` | `gstack-tutorial-2_ZH.pptx` |
 | Authority contract | [`../docs/expertise_division.md`](../docs/expertise_division.md) | [`../docs/expertise_division.zh.md`](../docs/expertise_division.zh.md) |
 
 ## The second, more important idea

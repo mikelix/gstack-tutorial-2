@@ -153,6 +153,7 @@ the new baseline, and never "fix" a hash mismatch by relaxing the check.
 | [`COLLABORATOR_GUIDE.md`](COLLABORATOR_GUIDE.md) | Fork model, channels, review cadence |
 | [`docs/gate_chain.md`](docs/gate_chain.md) | Gate-by-gate reference |
 | [`docs/expertise_division.md`](docs/expertise_division.md) | **Why gstack cannot decide domain questions** — RACI, veto rules, defer clause |
+| [`docs/two-key-authority.svg`](docs/two-key-authority.svg) (+ `.png`) | The two-key authority model as one figure (embedded in the tutorial, Word and deck) |
 | [`starter/`](starter/README.md) | **runnable skeleton** — gate scripts, `db_export.py`, config template |
 | [`reviews/`](reviews/README.md) | **five worked gstack review records** (CEO → spec → eng → QA → ship) |
 | `.github/ISSUE_TEMPLATE/weekly_progress_report.md` | Weekly report template |
@@ -164,7 +165,7 @@ the new baseline, and never "fix" a hash mismatch by relaxing the check.
 |---|---|---|
 | Markdown | [`TUTORIAL.md`](TUTORIAL.md) | [`TUTORIAL.zh.md`](TUTORIAL.zh.md) |
 | MS Word | [`dist/gstack-tutorial-2_EN.docx`](dist/gstack-tutorial-2_EN.docx) | [`dist/gstack-tutorial-2_ZH.docx`](dist/gstack-tutorial-2_ZH.docx) |
-| PowerPoint (35 slides) | [`dist/gstack-tutorial-2_EN.pptx`](dist/gstack-tutorial-2_EN.pptx) | [`dist/gstack-tutorial-2_ZH.pptx`](dist/gstack-tutorial-2_ZH.pptx) |
+| PowerPoint (39 slides) | [`dist/gstack-tutorial-2_EN.pptx`](dist/gstack-tutorial-2_EN.pptx) | [`dist/gstack-tutorial-2_ZH.pptx`](dist/gstack-tutorial-2_ZH.pptx) |
 
 The markdown is the source of truth; the Word and PowerPoint files are generated
 from it (see `_build/`). Change the markdown, then regenerate — do not hand-edit

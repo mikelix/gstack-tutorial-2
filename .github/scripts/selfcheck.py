@@ -48,6 +48,8 @@ REQUIRED = [
     "docs/gate_chain.md",
     "docs/expertise_division.md",
     "docs/expertise_division.zh.md",
+    "docs/two-key-authority.svg",
+    "docs/two-key-authority.png",
     "reviews/README.md",
     "reviews/01-ceo-review.md",
     "reviews/02-spec.md",
@@ -121,13 +123,21 @@ def check_bilingual_parity() -> None:
     zh = ROOT / "TUTORIAL.zh.md"
     if not (en.is_file() and zh.is_file()):
         return
-    h1_en = len(re.findall(r"^# ", en.read_text(encoding="utf-8"), re.M))
-    h1_zh = len(re.findall(r"^# ", zh.read_text(encoding="utf-8"), re.M))
+    en_t = en.read_text(encoding="utf-8")
+    zh_t = zh.read_text(encoding="utf-8")
+    h1_en = len(re.findall(r"^# ", en_t, re.M))
+    h1_zh = len(re.findall(r"^# ", zh_t, re.M))
     if h1_en != h1_zh:
         warn(
             f"bilingual parity: {h1_en} top-level sections in EN vs {h1_zh} in ZH "
             "— a section may not have been translated"
         )
+    fig_en = en_t.count("two-key-authority")
+    fig_zh = zh_t.count("two-key-authority")
+    if fig_en == 0 or fig_zh == 0:
+        fail("the two-key authority figure is not referenced in both tutorials")
+    elif fig_en != fig_zh:
+        warn(f"bilingual parity: figure referenced {fig_en}x in EN vs {fig_zh}x in ZH")
 
 
 def check_dist_freshness() -> None:

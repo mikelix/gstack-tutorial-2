@@ -187,6 +187,11 @@ difference between an AI that sounds right and an AI that is right.
 > Method verified against measurement at every step. That is the standard the
 > orchestration layer is being asked to respect.
 
+![Two-key authority model: gstack holds process authority, the two domain agents hold physics authority, both feed the gate chain, and on conflict physics wins](docs/two-key-authority.svg)
+
+Figure 0-1 — The two-key authority model in one picture. Prose version with the
+RACI columns and the three veto rights: [`docs/expertise_division.md`](docs/expertise_division.md).
+
 ## 0.5 The two domain agents
 
 | Agent | Owns | Produces | Judged by |
@@ -912,6 +917,88 @@ judged by simulation and human review, not by the gate chain. Say so in your wri
 - [ ] A sized schematic and an ngspice deck exist.
 - [ ] Simulated metrics vs spec table filled.
 - [ ] The agent named one assumption likely to be wrong.
+- [ ] For every dispatch you can name the AI level used (see 9.7) **and the
+      engine that verified the result** — not the chatbot, the engine.
+
+---
+
+## 9.5 The workflow the analog agent enforces
+
+Part 5 taught a digital line: RTL → GDS through four gates. Ask the analog agent
+to design a low-noise CMOS sensor amplifier and it will **not** start by drawing a
+schematic. It starts with the sensor and the product spec, and it works through
+roughly twenty phases, in this order:
+
+| # | Phase | What it feeds |
+|---|---|---|
+| 1 | Sensor model and product specifications | the target every later number is judged against |
+| 2 | Signal / noise / dynamic-range budget | per-block allocations — the spec becomes arithmetic |
+| 3 | PDK device characterization | real f_T, noise and matching data, not textbook models |
+| 4 | Architecture comparison | candidates killed on paper, not in silicon |
+| 5 | g_m/I_D-based first sizing | initial W, L, I_D from lookup, not from guesswork |
+| 6 | Hand calculation | the number the simulator must be compared against |
+| 7 | Nominal SPICE | first confrontation between hand numbers and physics |
+| 8 | Noise-contribution analysis | which device eats the noise budget |
+| 9 | Architecture / system behavioral simulation | loop-level behaviour before transistor-level grind |
+| 10 | PVT corners | does it survive process, voltage, temperature |
+| 11 | Monte Carlo / mismatch | a distribution, not a point |
+| 12 | Automated optimization / design centering | move the distribution, not the nominal |
+| 13 | Early floorplan | critical devices placed before routing exists |
+| 14 | Critical-device layout | matching and parasitics by construction |
+| 15 | Progressive PEX | parasitics extracted incrementally, not at the end |
+| 16 | Post-layout noise / stability / PVT | the numbers you will actually get |
+| 17 | High-sigma / yield analysis | six-sigma corners, not three-sigma hope |
+| 18 | Reliability / aging / EMIR | it must still work in ten years |
+| 19 | AMS / full-chip verification | the analog block inside its digital context |
+| 20 | Tapeout → characterization → model correlation | silicon measured vs silicon predicted |
+
+Phases 1–3, 10–12, 16–17 and 20 are exactly where this tutorial's gate philosophy
+lives: each produces an artifact that either agrees with a previous artifact or
+explains, with evidence, why it does not.
+
+**For PG students:** learn this sequence before you learn any tool. The sequence
+*is* the expertise; the tools are interchangeable.
+
+## 9.6 The philosophy in one line
+
+The whole workflow compresses to:
+
+```
+Specs → Physics → Architecture → Optimization → Statistics → Layout → Silicon
+```
+
+and emphatically **not** to:
+
+```
+draw schematic → SPICE → layout
+```
+
+Every arrow in that chain is a gate in the sense of Part 5: something crosses it
+(an artifact, a number, a distribution) and something judges it (a hand
+calculation, a corner sweep, a measurement). If you cannot name the artifact that
+crosses an arrow, the arrow did not happen — write the phase down as VOID and
+move on honestly. This is the same exit-code discipline you applied to LVS:
+a stage that produced no comparable artifact did not pass, it merely ran.
+
+## 9.7 Where AI belongs — the four levels
+
+Divide AI usage in analog IC design into four levels. The levels are defined not
+by what the AI *does* but by **what verifies it**:
+
+| Level | AI does | Verified by | Status in 2026 |
+|---|---|---|---|
+| **1 — engineering assistant** | derive equations; write Ocean/SKILL/Python scripts; generate test benches; analyse simulation logs; plot trade-offs | the engineer reads everything it produces | very useful today |
+| **2 — design-space optimizer** | choose W, L, I_D, C, R inside constraints you set | the simulator — the only referee | very useful when constrained correctly |
+| **3 — layout assistant** | placement, routing, constraint capture, parasitic optimization | DRC/LVS gates plus layout-aware checks | moving fast: Synopsys publicly describes an AI-assisted analog layout synthesis flow that captures design intent and constraints, produces DRC-clean layouts and performs layout-aware optimization; in 2026 it reported customer deployment progress and substantial reductions in layout iterations |
+| **4 — autonomous engineering agents** | orchestrate EDA tasks end to end | physics-based EDA engines, continuously | emerging now: vendors integrate agentic systems that orchestrate EDA tasks but continuously check their conclusions against physics-based EDA engines — Siemens explicitly describes this "self-verifying" agent model rather than allowing an LLM alone to determine correctness |
+
+That distinction is crucial, and it is the whole point of this tutorial:
+
+> **Level 4 is what this tutorial builds with open tools — under a different
+> name.** The two-key authority contract (Figure 0-1) is the same idea: the LLM
+> never determines correctness; the physics engine does. If a vendor promises
+> autonomous analog design without naming the engine that verifies it, you now
+> know exactly which question to ask.
 
 ---
 

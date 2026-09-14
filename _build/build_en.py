@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 """English deck: gstack Tutorial No. 2"""
+import os
 import sys
 sys.path.insert(0, r'D:\ipason\EDA\gstack-tutorial-2\_build')
 from deck import *  # noqa
 from deck import NAVY, NAVY2, ACCENT, ACCENT2, WHITE, LIGHT, GREY, DARK
+
+DIAGRAM = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       '..', 'docs', 'two-key-authority.png')
 
 FOOT = "gstack Tutorial No. 2  ·  Build an AI-Agent End-to-End EDA System on WorkBuddy"
 
@@ -130,6 +134,14 @@ def build_en(prs):
          ["Any statement with a physics number", "not allowed", "DECIDES", "—"]],
         col_widths=[4.4, 2.3, 2.7, 1.8], first_bold=True, size=11.5,
         note="Read the \"not allowed\" rows first. They are the point of the table."))
+
+    # 6d2 the two-key diagram
+    num(slide_image(
+        prs,
+        "The two-key authority model — one picture",
+        DIAGRAM,
+        kicker="PART 0 · WHO DECIDES WHAT",
+        note="gstack holds process authority, the two domain agents hold physics authority; both feed the gate chain, and on conflict physics wins."))
 
     # 6e veto rules
     num(slide_bullets(
@@ -393,6 +405,41 @@ def build_en(prs):
          "Honest status: its gates are not yet implemented — judged by simulation and human review"],
         kicker="PART 9 · 2–4 H",
         note="22 years from a Lyapunov exponent to a certified diagnostic. The domain changed; the discipline did not."))
+
+    # 24b analog workflow
+    num(slide_table(
+        prs,
+        "The workflow the analog agent enforces",
+        ["Stage", "Phases", "Question it answers"],
+        [["Specs & physics", "1–3", "sensor model, noise / dynamic-range budget, PDK device data"],
+         ["Architecture", "4–6", "topology comparison, g_m/I_D first sizing, hand calculation"],
+         ["Nominal & behaviour", "7–9", "nominal SPICE, noise contributions, behavioral sim"],
+         ["Statistics", "10–12", "PVT, Monte Carlo / mismatch, design centering"],
+         ["Layout", "13–15", "floorplan, critical devices, progressive PEX"],
+         ["Post-layout", "16–18", "noise / stability / PVT, high-sigma yield, reliability / EMIR"],
+         ["Silicon", "19–20", "AMS verification, tapeout, characterization, model correlation"]],
+        kicker="PART 9 · FOR PG STUDENTS",
+        note="Learn the sequence before the tools — the sequence IS the expertise. Full 20-row table: TUTORIAL.md §9.5."))
+
+    # 24c analog philosophy
+    num(slide_code(
+        prs,
+        "The philosophy in one line",
+        "Specs → Physics → Architecture → Optimization → Statistics → Layout → Silicon\n\nNOT:   draw schematic → SPICE → layout",
+        kicker="PART 9 · MAJOR PHILOSOPHY",
+        note="Every arrow is a gate: name the artifact that crosses it, or mark the phase VOID — a stage with no comparable artifact did not pass, it merely ran."))
+
+    # 24d four levels of AI
+    num(slide_table(
+        prs,
+        "Where AI belongs — the four levels",
+        ["Level", "AI does", "Verified by", "Status in 2026"],
+        [["1 Engineering assistant", "equations, scripts, test benches, log analysis, trade-offs", "the engineer reads everything", "very useful today"],
+         ["2 Design-space optimizer", "chooses W, L, I_D, C, R within your constraints", "the simulator — the only referee", "very useful, if constrained"],
+         ["3 Layout assistant", "placement, routing, constraints, parasitics", "DRC / LVS gates + layout-aware checks", "fast-moving — Synopsys: AI analog layout flow, DRC-clean, fewer iterations"],
+         ["4 Autonomous agents", "orchestrates EDA tasks end to end", "physics-based engines, continuously", "emerging — Siemens: \"self-verifying\" agents; the LLM never decides alone"]],
+        kicker="PART 9 · AI'S CORRECT ROLE",
+        note="The two-key contract of this tutorial is Level 4 built from open tools: the LLM never determines correctness — the physics engine does."))
 
     # 25 troubleshooting
     num(slide_table(

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Minimal Markdown -> DOCX renderer tuned for the gstack tutorial deliverables."""
+import os
 import re
 import sys
 from docx import Document
@@ -251,6 +252,39 @@ def render(md_path, docx_path, title_override=None):
             p = doc.add_paragraph(style='List Number')
             p.paragraph_format.space_after = Pt(2)
             add_rich(p, mn.group(2), size=10.5)
+            i += 1
+            continue
+
+        # image  ![alt](path)
+        mi = re.match(r'^!\[([^\]]*)\]\(([^)]+)\)\s*$', stripped)
+        if mi:
+            src = mi.group(2)
+            if not os.path.isabs(src):
+                src = os.path.join(os.path.dirname(os.path.abspath(md_path)), src)
+            # python-docx cannot embed SVG: swap in the rendered PNG twin
+            if src.lower().endswith('.svg'):
+                src = src[:-4] + '.png'
+            if os.path.exists(src):
+                p = doc.add_paragraph()
+                p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p.paragraph_format.space_before = Pt(6)
+                p.paragraph_format.space_after = Pt(2)
+                run = p.add_run()
+                run.add_picture(src, width=Cm(15.6))
+            else:
+                p = doc.add_paragraph()
+                add_rich(p, '[missing figure: %s]' % mi.group(2), size=9,
+                         color=RGBColor(0xA3, 0x1D, 0x1D))
+            i += 1
+            continue
+
+        # figure caption line  Figure N — ...
+        mc = re.match(r'^Figure [A-Z0-9\-\.]+ —', stripped)
+        if mc:
+            p = doc.add_paragraph()
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p.paragraph_format.space_after = Pt(8)
+            add_rich(p, stripped, size=9.2, color=GREY)
             i += 1
             continue
 

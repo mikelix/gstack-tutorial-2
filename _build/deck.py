@@ -185,6 +185,25 @@ def _note(s, note):
     sf(r, 11.5, False, NAVY)
 
 
+def slide_image(prs, title, img_path, note=None, kicker=None,
+                max_w=11.2, max_h=4.45):
+    """Full-width picture slide below the standard header."""
+    s = blank(prs)
+    _header(s, title, kicker)
+    from PIL import Image
+    im = Image.open(img_path)
+    ar = im.width / float(im.height)
+    w = max_w
+    h = w / ar
+    if h > max_h:
+        h = max_h
+        w = h * ar
+    s.shapes.add_picture(img_path, Inches((13.333 - w) / 2),
+                         Inches(1.62 + (max_h - h) / 2), Inches(w), Inches(h))
+    _note(s, note)
+    return s
+
+
 def slide_bullets(prs, title, bullets, note=None, kicker=None, size=15.5):
     s = blank(prs)
     bg(s, WHITE)

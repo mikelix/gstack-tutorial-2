@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 """Chinese deck: gstack 教程 No. 2"""
+import os
 import sys
 sys.path.insert(0, r'D:\ipason\EDA\gstack-tutorial-2\_build')
 from deck import *  # noqa
 from deck import NAVY, NAVY2, ACCENT, ACCENT2, WHITE, LIGHT, GREY, DARK
+
+DIAGRAM = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       '..', 'docs', 'two-key-authority.png')
 
 FOOT = "gstack 教程 No. 2  ·  在 WorkBuddy 上构建 AI 智能体驱动的端到端 EDA 系统"
 
@@ -130,6 +134,14 @@ def build_zh(prs):
          ["任何含物理数字的表述", "无权", "决定", "—"]],
         col_widths=[4.4, 2.3, 2.7, 1.8], first_bold=True, size=11.5,
         note="先读“无权”那几行。那才是整张表的重点。"))
+
+    # 6d2 双钥匙权限图
+    num(slide_image(
+        prs,
+        "双钥匙权限模型 —— 一图流",
+        DIAGRAM,
+        kicker="第 0 部分 · 谁有权决定什么",
+        note="gstack 持流程权，两个领域智能体持物理权；二者共同喂给门链，冲突时物理权获胜。"))
 
     # 6e 三条否决规则
     num(slide_bullets(
@@ -392,6 +404,41 @@ def build_zh(prs):
          "诚实状态：它的门尚未实现 —— 由仿真与人工评审判定"],
         kicker="第 9 部分 · 2–4 小时",
         note="从一个李雅普诺夫指数到一台获证诊断设备，走了 22 年。领域在变，纪律没变。"))
+
+    # 24b 模拟工作流
+    num(slide_table(
+        prs,
+        "模拟智能体执行的工作流",
+        ["阶段组", "序号", "回答的问题"],
+        [["指标与物理", "1–3", "传感器建模、噪声 / 动态范围预算、PDK 器件数据"],
+         ["架构", "4–6", "拓扑对比、g_m/I_D 初步 sizing、手工计算"],
+         ["标称与行为级", "7–9", "标称 SPICE、噪声贡献、行为级仿真"],
+         ["统计", "10–12", "PVT、蒙特卡洛 / 失配、设计中心化"],
+         ["版图", "13–15", "floorplan、关键器件、渐进式 PEX"],
+         ["后版图", "16–18", "噪声 / 稳定性 / PVT、高良率分析、可靠性 / EMIR"],
+         ["硅片", "19–20", "AMS 验证、流片、表征、模型相关性"]],
+        kicker="第 9 部分 · 给研究生",
+        note="先学顺序再学工具 —— 顺序本身就是 expertise。完整 20 行表见 TUTORIAL.zh.md §9.5。"))
+
+    # 24c 方法论
+    num(slide_code(
+        prs,
+        "方法论，一行说完",
+        "Specs → Physics → Architecture → Optimization → Statistics → Layout → Silicon\n\n不是：  画电路图 → SPICE → 画版图",
+        kicker="第 9 部分 · 核心哲学",
+        note="每个箭头都是一扇门：说出是什么产物穿过了它，否则把该阶段记为 VOID —— 没有可对照产物的阶段没有通过，它只是跑过。"))
+
+    # 24d AI 四层级
+    num(slide_table(
+        prs,
+        "AI 该待在哪 —— 四个层级",
+        ["层级", "AI 做什么", "由谁验证", "2026 年现状"],
+        [["1 工程助手", "推导公式、写脚本、生成测试台、分析日志、画 trade-off", "工程师逐条读它产出的一切", "今天就非常好用"],
+         ["2 设计空间优化器", "在你设的约束内选 W、L、I_D、C、R", "仿真器 —— 唯一的裁判", "约束设得对就非常好用"],
+         ["3 版图助手", "布局、布线、约束捕获、寄生优化", "DRC / LVS 门 + 版图感知检查", "进展快 —— Synopsys：AI 模拟版图流程，DRC 干净，迭代更少"],
+         ["4 自主智能体", "端到端编排 EDA 任务", "基于物理的引擎，持续验证", "涌现中 —— Siemens：“自验证”智能体；LLM 永远不单独裁定"]],
+        kicker="第 9 部分 · AI 的正确角色",
+        note="本教程的双钥匙契约就是用开源工具搭出的第 4 层：LLM 永远不裁定正确性 —— 物理引擎裁定。"))
 
     # 25
     num(slide_table(

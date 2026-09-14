@@ -140,6 +140,7 @@ RACI 表、三条否决规则、升级处置流程，以及可复制的**让渡�
 | [`COLLABORATOR_GUIDE.md`](COLLABORATOR_GUIDE.md) | fork 模型、频道、评审节奏 |
 | [`docs/gate_chain.md`](docs/gate_chain.md) | 逐门参考 |
 | [`docs/expertise_division.zh.md`](docs/expertise_division.zh.md) | **为什么 gstack 无权决定领域问题** —— 权限契约、否决规则、让渡条款 |
+| [`docs/two-key-authority.svg`](docs/two-key-authority.svg)（含 `.png`） | 双钥匙权限模型一图流（已嵌入教程、Word 与 deck） |
 | [`starter/`](starter/README.md) | **可直接运行的骨架** —— 门脚本、`db_export.py`、配置模板 |
 | [`reviews/`](reviews/README.md) | **五份 gstack 评审记录范例**（CEO → spec → 工程 → QA → 发布） |
 | `.github/ISSUE_TEMPLATE/weekly_progress_report.md` | 周报模板 |
@@ -151,7 +152,7 @@ RACI 表、三条否决规则、升级处置流程，以及可复制的**让渡�
 |---|---|---|
 | Markdown | [`TUTORIAL.md`](TUTORIAL.md) | [`TUTORIAL.zh.md`](TUTORIAL.zh.md) |
 | MS Word | [`dist/gstack-tutorial-2_EN.docx`](dist/gstack-tutorial-2_EN.docx) | [`dist/gstack-tutorial-2_ZH.docx`](dist/gstack-tutorial-2_ZH.docx) |
-| PowerPoint（35 页） | [`dist/gstack-tutorial-2_EN.pptx`](dist/gstack-tutorial-2_EN.pptx) | [`dist/gstack-tutorial-2_ZH.pptx`](dist/gstack-tutorial-2_ZH.pptx) |
+| PowerPoint（39 页） | [`dist/gstack-tutorial-2_EN.pptx`](dist/gstack-tutorial-2_EN.pptx) | [`dist/gstack-tutorial-2_ZH.pptx`](dist/gstack-tutorial-2_ZH.pptx) |
 
 Markdown 是唯一事实来源，Word 与 PowerPoint 由它生成（见 `_build/`）。
 改 Markdown 后重新生成 —— 不要手改二进制文件。
