@@ -150,6 +150,7 @@ the new baseline, and never "fix" a hash mismatch by relaxing the check.
 | **[`TUTORIAL.md`](TUTORIAL.md)** | **the step-by-step course (start here)** |
 | [`START_HERE.md`](START_HERE.md) | Solo and team entry points |
 | [`PLAN.md`](PLAN.md) | Scope, phases, team topology, DoD |
+| [`PLAYBOOK.md`](PLAYBOOK.md) | **How this tutorial was built** — the 10-step process, for authoring No. 3 |
 | [`COLLABORATOR_GUIDE.md`](COLLABORATOR_GUIDE.md) | Fork model, channels, review cadence |
 | [`docs/gate_chain.md`](docs/gate_chain.md) | Gate-by-gate reference |
 | [`docs/expertise_division.md`](docs/expertise_division.md) | **Why gstack cannot decide domain questions** — RACI, veto rules, defer clause |

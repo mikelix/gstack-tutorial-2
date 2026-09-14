@@ -137,6 +137,7 @@ RACI 表、三条否决规则、升级处置流程，以及可复制的**让渡�
 | **[`TUTORIAL.md`](TUTORIAL.md)**（英文）· **[`TUTORIAL.zh.md`](TUTORIAL.zh.md)**（中文） | **逐步教程（从这里开始）** |
 | [`START_HERE.md`](START_HERE.md) | 个人 / 团队两种入口 |
 | [`PLAN.md`](PLAN.md) | 范围、阶段、团队拓扑、完成定义 |
+| [`PLAYBOOK.zh.md`](PLAYBOOK.zh.md) | **这份教程是怎么做出来的** —— 十步流程，供编写 No. 3 复用 |
 | [`COLLABORATOR_GUIDE.md`](COLLABORATOR_GUIDE.md) | fork 模型、频道、评审节奏 |
 | [`docs/gate_chain.md`](docs/gate_chain.md) | 逐门参考 |
 | [`docs/expertise_division.zh.md`](docs/expertise_division.zh.md) | **为什么 gstack 无权决定领域问题** —— 权限契约、否决规则、让渡条款 |

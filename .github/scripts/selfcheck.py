@@ -43,6 +43,8 @@ REQUIRED = [
     "TUTORIAL.zh.md",
     "PLAN.md",
     "START_HERE.md",
+    "PLAYBOOK.md",
+    "PLAYBOOK.zh.md",
     "COLLABORATOR_GUIDE.md",
     "LICENSE.md",
     "docs/gate_chain.md",
